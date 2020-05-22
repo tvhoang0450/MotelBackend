@@ -45,9 +45,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
     'DichVu',
-    'HuyenQuan',
     'PhongTro',
-    'TinhTP'
+    'DiaChi',
 ]
 
 MIDDLEWARE = [
@@ -86,11 +85,19 @@ WSGI_APPLICATION = 'Motel.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'motel_backend',
+        'USER': 'root',
+        'PASSWORD': "",
+        'HOST': "localhost",
+        'PORT': "3306",
+        'default-character-set': "utf8",
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8'
+        }
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

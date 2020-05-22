@@ -20,6 +20,8 @@ from .permissions import IsOwnerOrReadOnly
 from rest_framework import generics
 from django_filters.rest_framework import DjangoFilterBackend
 
+from .filters import PhongTroFilterSet
+
 
 def index(request):
     return HttpResponse("Đây là đài tiếng nói Việt Nam")
@@ -44,20 +46,16 @@ class PhongTroUpdateDeleteAPIView(viewsets.GenericViewSet,
     serializer_class = PhongTroSerializer
     lookup_field = 'id'
 
-class PhongTroList(generics.ListAPIView):
-    queryset = PhongTro.objects.all()
-    serializer_class = PhongTroSerializer
-    filter_backends = [DjangoFilterBackend]
-    # filterset_fields = ['DichVu__TenDV', 'TinhTp__TenTinh' , 'HuyenQuan__TenHuyen', 'Gia', 'DienTich']
-    filterset_fields = ['DichVu__TenDV']
 
-class ModelByMakerList(generics.ListAPIView):
-    serializer_class = PhongTroSerializer
+# class PhongTroList(generics.ListAPIView):
+#     queryset = PhongTro.objects.all()
+#     serializer_class = PhongTroSerializer
+#     filter_backends = [DjangoFilterBackend]
+#     filterset_fields = ['DichVu', 'TinhTP', 'HuyenQuan', 'Gia', 'DienTich']
 
-    def get_queryset(self):
-        """
-        This view should return a list of all models by
-        the maker passed in the URL
-        """
-        dichvu = self.kwargs['DichVu']
-        return PhongTro.objects.filter(DichVu=dichvu)
+
+# class PhongTroViewSet(viewsets.ModelViewSet):
+#     queryset = PhongTro.objects.all()
+#     serializer_class = PhongTroSerializer
+#     permission_classes = [IsOwnerOrReadOnly]
+#     filterset_class = PhongTroFilterSet
