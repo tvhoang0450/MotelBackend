@@ -28,7 +28,7 @@ def index(request):
 
 
 class PhongTroListCreateAPIView(viewsets.GenericViewSet,
-                                ListCreateAPIView):
+                                ListCreateAPIView, ):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = PhongTroSerializer
     queryset = PhongTro.objects.all()
@@ -36,23 +36,32 @@ class PhongTroListCreateAPIView(viewsets.GenericViewSet,
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
+    # def get_queryset(self):
+    #     """
+    #     Optionally restricts the returned purchases to a given user,
+    #     by filtering against a `username` query parameter in the URL.
+    #     """
+    #     queryset = PhongTro.objects.all()
+    #     username = self.request.query_params.get('username', None)
+    #     if username is not None:
+    #         queryset = queryset.filter(owner=username)
+    #     return queryset
+
 
 class PhongTroUpdateDeleteAPIView(viewsets.GenericViewSet,
                                   RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly]
-
     queryset = PhongTro.objects.all()
     serializer_class = PhongTroSerializer
     lookup_field = 'id'
 
 
-# class PhongTroList(generics.ListAPIView):
-#     queryset = PhongTro.objects.all()
-#     serializer_class = PhongTroSerializer
-#     filter_backends = [DjangoFilterBackend]
-#     filterset_fields = ['DichVu', 'TinhTP', 'HuyenQuan', 'Gia', 'DienTich']
-
+class PhongTroList(generics.ListAPIView):
+    queryset = PhongTro.objects.all()
+    serializer_class = PhongTroSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['DichVu', 'province', 'district', 'ward', 'street', 'Gia', 'DienTich']
 
 # class PhongTroViewSet(viewsets.ModelViewSet):
 #     queryset = PhongTro.objects.all()
