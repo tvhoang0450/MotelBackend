@@ -21,7 +21,7 @@ class PhongTroSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         self.fields['DichVu'] = DichVuSerializer(read_only=True)
-        self.fields['provice'] = provinceSerializer(read_only=True)
+        self.fields['province'] = provinceSerializer(read_only=True)
         self.fields['district'] = districtSerializer(read_only=True)
         self.fields['ward'] = wardSerializer(read_only=True)
         self.fields['street'] = streetSerializer(read_only=True)
