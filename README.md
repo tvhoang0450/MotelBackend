@@ -18,3 +18,5 @@ http://127.0.0.1:8000/rest-auth/registration/
 http://127.0.0.1:8000/rest-auth/password/change/
 
 http://127.0.0.1:8000/rest-auth/user/
+
+Filter:   http://127.0.0.1:8000/PhongTro/?DichVu=&province=&district=&ward=&street=&Gia=&DienTich=
