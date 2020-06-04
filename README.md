@@ -11,7 +11,7 @@ DELETE http://127.0.0.1:8000/PhongTro/api/posts/:id sẽ xóa resource
 
 http://127.0.0.1:8000/rest-auth/login/
 
-http://127.0.0.1:8000/rest-auth/loout/
+http://127.0.0.1:8000/rest-auth/logout/
 
 http://127.0.0.1:8000/rest-auth/registration/
 
